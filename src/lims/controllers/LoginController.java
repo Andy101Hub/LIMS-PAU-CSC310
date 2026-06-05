@@ -142,7 +142,11 @@ public class LoginController {
             showAlert("Login Successful", "Lab Attendant dashboard will be connected by Person 2.");
 
         } else if (role.equals("CUSTOMER")) {
-            showAlert("Login Successful", "Customer dashboard will be connected by Person 3.");
+            SceneNavigator.switchScene(
+                    stage,
+                    "/lims/views/customer_dashboard.fxml",
+                    "Customer Dashboard"
+            );
 
         } else {
             showAlert("Login Error", "Unknown user role: " + role);

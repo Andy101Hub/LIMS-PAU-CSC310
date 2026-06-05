@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="550.0" prefWidth="900.0"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="lims.controllers.MyRequestsController">
+
+    <children>
+        <Label text="My Test Requests" layoutX="380" layoutY="30" />
+
+        <TableView fx:id="requestsTable" layoutX="40" layoutY="80" prefWidth="820" prefHeight="360">
+            <columns>
+                <TableColumn fx:id="requestIdColumn" text="Request ID" prefWidth="100" />
+                <TableColumn fx:id="testNameColumn" text="Test Name" prefWidth="220" />
+                <TableColumn fx:id="paymentStatusColumn" text="Payment Status" prefWidth="150" />
+                <TableColumn fx:id="requestStatusColumn" text="Request Status" prefWidth="180" />
+                <TableColumn fx:id="requestedAtColumn" text="Requested At" prefWidth="170" />
+            </columns>
+        </TableView>
+
+        <Label fx:id="messageLabel" text="" layoutX="40" layoutY="455" />
+
+        <Button text="Back to Dashboard"
+                layoutX="40"
+                layoutY="485"
+                prefWidth="180"
+                onAction="#backToDashboard" />
+    </children>
+</AnchorPane>

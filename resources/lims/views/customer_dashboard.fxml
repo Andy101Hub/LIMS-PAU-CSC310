@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="450.0" prefWidth="650.0"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="lims.controllers.CustomerDashboardController">
+
+    <children>
+        <Label text="Customer Dashboard" layoutX="230" layoutY="40" />
+
+        <Label fx:id="welcomeLabel"
+               text="Welcome, Customer"
+               layoutX="60"
+               layoutY="90" />
+
+        <Button text="View Available Tests"
+                layoutX="60"
+                layoutY="140"
+                prefWidth="200"
+                onAction="#openTestCatalogue" />
+
+        <Button text="View My Requests"
+                layoutX="60"
+                layoutY="190"
+                prefWidth="200"
+                onAction="#openMyRequests" />
+
+        <Button text="Open Result Vault"
+                layoutX="60"
+                layoutY="240"
+                prefWidth="200" />
+    </children>
+</AnchorPane>

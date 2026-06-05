@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="550.0" prefWidth="850.0"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="lims.controllers.TestCatalogueController">
+
+    <children>
+        <Label text="Available Laboratory Tests" layoutX="330" layoutY="30" />
+
+        <TableView fx:id="testsTable" layoutX="40" layoutY="80" prefWidth="760" prefHeight="330">
+            <columns>
+                <TableColumn fx:id="nameColumn" text="Test Name" prefWidth="190" />
+                <TableColumn fx:id="categoryColumn" text="Category" prefWidth="140" />
+                <TableColumn fx:id="priceColumn" text="Price" prefWidth="110" />
+                <TableColumn fx:id="turnaroundColumn" text="Turnaround Hours" prefWidth="160" />
+                <TableColumn fx:id="formatColumn" text="Result Format" prefWidth="150" />
+            </columns>
+        </TableView>
+
+        <Label fx:id="messageLabel" text="" layoutX="40" layoutY="425" />
+
+        <Button text="Submit Test Request"
+                layoutX="40"
+                layoutY="460"
+                prefWidth="180"
+                onAction="#submitTestRequest" />
+
+        <Button text="Back to Dashboard"
+                layoutX="240"
+                layoutY="460"
+                prefWidth="160"
+                onAction="#backToDashboard" />
+    </children>
+</AnchorPane>
