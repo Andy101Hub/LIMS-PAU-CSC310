@@ -68,4 +68,15 @@ public class SuperAdminDashboardController {
             "Test Request Queue"
         );
     }
+    
+    @FXML
+    private void openAuditTrail(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        SceneNavigator.switchScene(
+            stage,
+            "/lims/views/audit_trail.fxml",
+            "Audit Trail"
+        );
+    }
 }

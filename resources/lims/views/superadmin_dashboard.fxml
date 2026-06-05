@@ -49,6 +49,7 @@
                         styleClass="menu-button" />
 
                 <Button text="Audit Trail"
+                        onAction="#openAuditTrail"
                         prefWidth="180"
                         styleClass="menu-button" />
 

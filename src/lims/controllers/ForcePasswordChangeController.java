@@ -59,6 +59,11 @@ public class ForcePasswordChangeController {
 
         try {
             updatePasswordInDatabase(currentUser.getUserId(), hashedPassword);
+            
+            insertAuditLog(
+                    "FORCE_PASSWORD_CHANGE",
+                    "User changed temporary password after first login."
+            );
 
             currentUser.setPasswordHash(hashedPassword);
             currentUser.setForcePasswordChange(false);
@@ -110,5 +115,22 @@ public class ForcePasswordChangeController {
         } else {
             messageLabel.setText("Unknown user role: " + role);
         }
+    }
+    
+    private void insertAuditLog(String action, String details) throws SQLException {
+        String sql = "INSERT INTO audit_logs (user_id, action, details) "
+                   + "VALUES (?, ?, ?)";
+
+        Connection conn = DBConnection.getConnection();
+        PreparedStatement stmt = conn.prepareStatement(sql);
+
+        stmt.setInt(1, SessionManager.getCurrentUserId());
+        stmt.setString(2, action);
+        stmt.setString(3, details);
+
+        stmt.executeUpdate();
+
+        stmt.close();
+        conn.close();
     }
 }
