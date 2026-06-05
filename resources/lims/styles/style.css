@@ -1,0 +1,109 @@
+.login-background {
+    -fx-background-color: #f4f6f9;
+}
+
+.login-card {
+    -fx-background-color: white;
+    -fx-padding: 30;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 10, 0, 0, 4);
+}
+
+.title-label {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.error-label {
+    -fx-text-fill: red;
+    -fx-font-size: 12px;
+}
+
+.primary-button {
+    -fx-background-color: #1f4e79;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+}
+
+.primary-button:hover {
+    -fx-background-color: #163a59;
+}
+
+.dashboard-background {
+    -fx-background-color: #eef2f7;
+}
+
+.top-bar {
+    -fx-background-color: #1f4e79;
+    -fx-padding: 18;
+    -fx-alignment: center-left;
+}
+
+.dashboard-title {
+    -fx-text-fill: white;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.welcome-label {
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.side-menu {
+    -fx-background-color: white;
+    -fx-padding: 25;
+    -fx-border-color: #d6dce5;
+    -fx-border-width: 0 1 0 0;
+}
+
+.menu-button {
+    -fx-background-color: #f5f7fa;
+    -fx-text-fill: #1f2937;
+    -fx-font-size: 13px;
+    -fx-background-radius: 6;
+    -fx-border-color: #d6dce5;
+    -fx-border-radius: 6;
+}
+
+.menu-button:hover {
+    -fx-background-color: #dbeafe;
+}
+
+.logout-button {
+    -fx-background-color: #b91c1c;
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+}
+
+.logout-button:hover {
+    -fx-background-color: #7f1d1d;
+}
+
+.section-heading {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #1f2937;
+}
+
+.normal-text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #4b5563;
+}
+
+.form-card {
+    -fx-background-color: white;
+    -fx-padding: 35;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.12), 10, 0, 0, 4);
+}
+.table-card {
+    -fx-background-color: white;
+    -fx-padding: 30;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.12), 10, 0, 0, 4);
+}

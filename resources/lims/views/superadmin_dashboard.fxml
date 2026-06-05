@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="lims.controllers.SuperAdminDashboardController"
+            prefWidth="900"
+            prefHeight="600"
+            styleClass="dashboard-background">
+
+    <top>
+        <HBox spacing="20"
+              styleClass="top-bar">
+
+            <children>
+                <Label text="LIMS Super Admin Dashboard"
+                       styleClass="dashboard-title" />
+
+                <Label fx:id="welcomeLabel"
+                       text="Welcome"
+                       styleClass="welcome-label" />
+            </children>
+        </HBox>
+    </top>
+
+    <left>
+        <VBox spacing="15"
+              prefWidth="220"
+              styleClass="side-menu">
+
+            <children>
+                <Button text="User Management"
+                        onAction="#openUserManagement"
+                        prefWidth="180"
+                        styleClass="menu-button" />
+
+                <Button text="Custom Test Builder"
+                        onAction="#openTestBuilder"
+                        prefWidth="180"
+                        styleClass="menu-button" />
+
+                <Button text="Test Request Queue"
+                        onAction="#openTestRequestQueue"
+                        prefWidth="180"
+                        styleClass="menu-button" />
+
+                <Button text="Audit Trail"
+                        prefWidth="180"
+                        styleClass="menu-button" />
+
+                <Button text="Logout"
+                        onAction="#handleLogout"
+                        prefWidth="180"
+                        styleClass="logout-button" />
+            </children>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox alignment="CENTER"
+              spacing="15">
+
+            <children>
+                <Label text="Administrative Governance Panel"
+                       styleClass="section-heading" />
+
+                <Label text="Use the menu on the left to manage users, tests, requests, and audit logs."
+                       styleClass="normal-text" />
+            </children>
+        </VBox>
+    </center>
+
+</BorderPane>
