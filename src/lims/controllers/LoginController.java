@@ -62,13 +62,13 @@ public class LoginController {
 
             if (user.isForcePasswordChange()) {
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-                
+
                 SceneNavigator.switchScene(
-                       stage,
+                        stage,
                         "/lims/views/force_password_change.fxml",
                         "Change Password"
                 );
-                
+
                 return;
             }
 
@@ -81,6 +81,17 @@ public class LoginController {
             messageLabel.setText("Something went wrong.");
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void openCustomerRegister(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        SceneNavigator.switchScene(
+                stage,
+                "/lims/views/customer_register.fxml",
+                "Customer Registration"
+        );
     }
 
     private User findUserByEmail(String email) throws SQLException {
@@ -122,9 +133,9 @@ public class LoginController {
 
         if (role.equals("SUPER_ADMIN")) {
             SceneNavigator.switchScene(
-                 stage,
-                 "/lims/views/superadmin_dashboard.fxml",
-                 "Super Admin Dashboard"
+                    stage,
+                    "/lims/views/superadmin_dashboard.fxml",
+                    "Super Admin Dashboard"
             );
 
         } else if (role.equals("LAB_ATTENDANT")) {
@@ -137,6 +148,7 @@ public class LoginController {
             showAlert("Login Error", "Unknown user role: " + role);
         }
     }
+
     private void showAlert(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
@@ -144,5 +156,4 @@ public class LoginController {
         alert.setContentText(message);
         alert.showAndWait();
     }
-    
-   }
+}

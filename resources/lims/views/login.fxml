@@ -10,16 +10,16 @@
 <AnchorPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="lims.controllers.LoginController"
             prefWidth="500"
-            prefHeight="400"
+            prefHeight="430"
             styleClass="login-background">
 
     <children>
         <VBox alignment="CENTER"
               spacing="15"
               layoutX="100"
-              layoutY="60"
+              layoutY="50"
               prefWidth="300"
-              prefHeight="280"
+              prefHeight="330"
               styleClass="login-card">
 
             <children>
@@ -43,6 +43,10 @@
                         onAction="#handleLogin"
                         prefWidth="250"
                         styleClass="primary-button" />
+
+                <Button text="Register as Customer"
+                        onAction="#openCustomerRegister"
+                        prefWidth="250" />
 
             </children>
         </VBox>
