@@ -1,12 +1,11 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package lims.controllers;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Timestamp;
+import java.time.Duration;
+import java.time.LocalDateTime;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -46,6 +45,9 @@ public class MyRequestsController {
     private TableColumn<TestRequest, String> requestedAtColumn;
 
     @FXML
+    private TableColumn<TestRequest, String> countdownColumn;
+
+    @FXML
     private Label messageLabel;
 
     @FXML
@@ -55,6 +57,7 @@ public class MyRequestsController {
         paymentStatusColumn.setCellValueFactory(new PropertyValueFactory<>("paymentStatus"));
         requestStatusColumn.setCellValueFactory(new PropertyValueFactory<>("requestStatus"));
         requestedAtColumn.setCellValueFactory(new PropertyValueFactory<>("requestedAt"));
+        countdownColumn.setCellValueFactory(new PropertyValueFactory<>("countdown"));
 
         loadMyRequests();
     }
@@ -70,7 +73,8 @@ public class MyRequestsController {
         ObservableList<TestRequest> requests = FXCollections.observableArrayList();
 
         String sql = "SELECT tr.request_id, u.full_name, u.email, tt.test_name, "
-                   + "tr.payment_status, tr.request_status, tr.requested_at "
+                   + "tr.payment_status, tr.request_status, tr.requested_at, "
+                   + "tt.turnaround_time_hours "
                    + "FROM test_requests tr "
                    + "JOIN users u ON tr.customer_id = u.user_id "
                    + "JOIN test_types tt ON tr.test_type_id = tt.test_type_id "
@@ -86,6 +90,16 @@ public class MyRequestsController {
             ResultSet rs = stmt.executeQuery();
 
             while (rs.next()) {
+                Timestamp requestedTimestamp = rs.getTimestamp("requested_at");
+                int turnaroundHours = rs.getInt("turnaround_time_hours");
+
+                String requestedAtText = requestedTimestamp.toLocalDateTime().toString();
+                String countdownText = calculateCountdown(
+                        requestedTimestamp.toLocalDateTime(),
+                        turnaroundHours,
+                        rs.getString("request_status")
+                );
+
                 TestRequest request = new TestRequest(
                         rs.getInt("request_id"),
                         rs.getString("full_name"),
@@ -93,7 +107,9 @@ public class MyRequestsController {
                         rs.getString("test_name"),
                         rs.getString("payment_status"),
                         rs.getString("request_status"),
-                        rs.getString("requested_at")
+                        requestedAtText,
+                        turnaroundHours,
+                        countdownText
                 );
 
                 requests.add(request);
@@ -107,12 +123,40 @@ public class MyRequestsController {
 
             if (requests.isEmpty()) {
                 messageLabel.setText("You have no test requests yet.");
+            } else {
+                messageLabel.setText("Countdown is calculated using requested time plus turnaround hours.");
             }
 
         } catch (Exception e) {
             e.printStackTrace();
             messageLabel.setText("Could not load your requests.");
         }
+    }
+
+    private String calculateCountdown(LocalDateTime requestedAt, int turnaroundHours, String requestStatus) {
+        if (requestStatus == null) {
+            return "Unknown";
+        }
+
+        if (requestStatus.equalsIgnoreCase("COMPLETED")
+                || requestStatus.equalsIgnoreCase("VALIDATED")
+                || requestStatus.equalsIgnoreCase("RELEASED")) {
+            return "Ready";
+        }
+
+        LocalDateTime readyTime = requestedAt.plusHours(turnaroundHours);
+        LocalDateTime now = LocalDateTime.now();
+
+        if (now.isAfter(readyTime)) {
+            return "Due now";
+        }
+
+        Duration remaining = Duration.between(now, readyTime);
+
+        long hours = remaining.toHours();
+        long minutes = remaining.toMinutes() % 60;
+
+        return hours + "h " + minutes + "m remaining";
     }
 
     @FXML

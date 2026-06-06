@@ -3,21 +3,22 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="550.0" prefWidth="900.0"
+<AnchorPane prefHeight="550.0" prefWidth="1000.0"
             xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="lims.controllers.MyRequestsController">
 
     <children>
-        <Label text="My Test Requests" layoutX="380" layoutY="30" />
+        <Label text="My Test Requests" layoutX="430" layoutY="30" />
 
-        <TableView fx:id="requestsTable" layoutX="40" layoutY="80" prefWidth="820" prefHeight="360">
+        <TableView fx:id="requestsTable" layoutX="40" layoutY="80" prefWidth="920" prefHeight="360">
             <columns>
-                <TableColumn fx:id="requestIdColumn" text="Request ID" prefWidth="100" />
-                <TableColumn fx:id="testNameColumn" text="Test Name" prefWidth="220" />
-                <TableColumn fx:id="paymentStatusColumn" text="Payment Status" prefWidth="150" />
-                <TableColumn fx:id="requestStatusColumn" text="Request Status" prefWidth="180" />
+                <TableColumn fx:id="requestIdColumn" text="Request ID" prefWidth="90" />
+                <TableColumn fx:id="testNameColumn" text="Test Name" prefWidth="200" />
+                <TableColumn fx:id="paymentStatusColumn" text="Payment Status" prefWidth="140" />
+                <TableColumn fx:id="requestStatusColumn" text="Request Status" prefWidth="160" />
                 <TableColumn fx:id="requestedAtColumn" text="Requested At" prefWidth="170" />
+                <TableColumn fx:id="countdownColumn" text="Countdown" prefWidth="160" />
             </columns>
         </TableView>
 

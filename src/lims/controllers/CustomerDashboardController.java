@@ -25,6 +25,7 @@ public class CustomerDashboardController {
 
     @FXML
     private void openTestCatalogue(ActionEvent event) {
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         SceneNavigator.switchScene(
@@ -36,12 +37,25 @@ public class CustomerDashboardController {
 
     @FXML
     private void openMyRequests(ActionEvent event) {
+
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         SceneNavigator.switchScene(
                 stage,
                 "/lims/views/my_requests.fxml",
                 "My Test Requests"
+        );
+    }
+
+    @FXML
+    private void openResultVault(ActionEvent event) {
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        SceneNavigator.switchScene(
+                stage,
+                "/lims/views/result_vault.fxml",
+                "Result Vault"
         );
     }
 }

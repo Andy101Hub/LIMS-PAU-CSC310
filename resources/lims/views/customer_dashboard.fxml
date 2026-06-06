@@ -29,8 +29,9 @@
                 onAction="#openMyRequests" />
 
         <Button text="Open Result Vault"
-                layoutX="60"
-                layoutY="240"
-                prefWidth="200" />
+        layoutX="60"
+        layoutY="240"
+        prefWidth="200"
+        onAction="#openResultVault" />
     </children>
 </AnchorPane>

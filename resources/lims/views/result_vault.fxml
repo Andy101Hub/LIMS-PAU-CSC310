@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="500.0"
+            prefWidth="800.0"
+            xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="lims.controllers.ResultVaultController">
+
+    <children>
+
+        <Label layoutX="350"
+               layoutY="25"
+               text="Result Vault" />
+
+        <TableView fx:id="resultsTable"
+                   layoutX="40"
+                   layoutY="70"
+                   prefHeight="300"
+                   prefWidth="720">
+
+            <columns>
+                <TableColumn fx:id="testNameColumn" text="Test Name" prefWidth="180" />
+                <TableColumn fx:id="statusColumn" text="Status" prefWidth="120" />
+                <TableColumn fx:id="pdfColumn" text="PDF Report" prefWidth="150" />
+                <TableColumn fx:id="imageColumn" text="Medical Image" prefWidth="150" />
+            </columns>
+
+        </TableView>
+
+        <Button layoutX="40"
+                layoutY="390"
+                text="View PDF Report"
+                prefWidth="150"
+                onAction="#viewPdfReport" />
+
+        <Button layoutX="210"
+                layoutY="390"
+                text="Download PDF"
+                prefWidth="150"
+                onAction="#downloadPdfReport" />
+
+        <Button layoutX="380"
+                layoutY="390"
+                text="View Medical Image"
+                prefWidth="160"
+                onAction="#viewMedicalImage" />
+
+        <Button layoutX="560"
+                layoutY="390"
+                text="Download Image"
+                prefWidth="150"
+                onAction="#downloadMedicalImage" />
+
+        <Label fx:id="messageLabel"
+               layoutX="40"
+               layoutY="430"
+               text="Only validated laboratory results will appear here." />
+
+        <Button layoutX="40"
+                layoutY="455"
+                text="Back to Dashboard"
+                onAction="#backToDashboard" />
+
+    </children>
+
+</AnchorPane>
