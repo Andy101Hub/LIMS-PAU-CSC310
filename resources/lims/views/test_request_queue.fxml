@@ -6,21 +6,82 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="lims.controllers.TestRequestQueueController"
-            prefWidth="1000"
+            prefWidth="1100"
             prefHeight="650"
             styleClass="dashboard-background">
 
+    <left>
+        <VBox spacing="18"
+              prefWidth="230"
+              styleClass="admin-sidebar">
+
+            <children>
+                <VBox spacing="3">
+                    <children>
+                        <Label text="SANTÉ"
+                               styleClass="sidebar-brand-title" />
+
+                        <Label text="DIAGNOSTICS LIMS"
+                               styleClass="sidebar-brand-subtitle" />
+                    </children>
+                </VBox>
+
+                <Region prefHeight="18" />
+
+                <Button text="Dashboard"
+                        onAction="#goBackToDashboard"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Button text="User Management"
+                        onAction="#openUserManagement"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Button text="Custom Test Builder"
+                        onAction="#openTestBuilder"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Button text="Test Request Queue"
+                        onAction="#openTestRequestQueue"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button-active" />
+
+                <Button text="Audit Trail"
+                        onAction="#openAuditTrail"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <Button text="Logout"
+                        onAction="#handleLogout"
+                        prefWidth="198"
+                        styleClass="admin-logout-button" />
+            </children>
+        </VBox>
+    </left>
+
     <top>
         <HBox spacing="20"
+              alignment="CENTER_LEFT"
               styleClass="top-bar">
 
             <children>
                 <Label text="Super Admin Test Request Queue"
                        styleClass="dashboard-title" />
+
+                <Region HBox.hgrow="ALWAYS" />
+
+                <Button text="← Back to Dashboard"
+                        onAction="#goBackToDashboard"
+                        styleClass="back-dashboard-button" />
             </children>
         </HBox>
     </top>
@@ -35,37 +96,37 @@
                        styleClass="section-heading" />
 
                 <TableView fx:id="requestTable"
-                           prefWidth="900"
+                           prefWidth="840"
                            prefHeight="400">
 
                     <columns>
                         <TableColumn fx:id="requestIdColumn"
                                      text="Request ID"
-                                     prefWidth="80" />
+                                     prefWidth="70" />
 
                         <TableColumn fx:id="customerNameColumn"
                                      text="Customer Name"
-                                     prefWidth="150" />
+                                     prefWidth="125" />
 
                         <TableColumn fx:id="customerEmailColumn"
                                      text="Customer Email"
-                                     prefWidth="190" />
+                                     prefWidth="170" />
 
                         <TableColumn fx:id="testNameColumn"
                                      text="Test Name"
-                                     prefWidth="170" />
+                                     prefWidth="140" />
 
                         <TableColumn fx:id="paymentStatusColumn"
                                      text="Payment"
-                                     prefWidth="100" />
+                                     prefWidth="90" />
 
                         <TableColumn fx:id="requestStatusColumn"
                                      text="Status"
-                                     prefWidth="140" />
+                                     prefWidth="110" />
 
                         <TableColumn fx:id="requestedAtColumn"
                                      text="Requested At"
-                                     prefWidth="160" />
+                                     prefWidth="135" />
                     </columns>
                 </TableView>
 
@@ -73,7 +134,8 @@
                        text=""
                        styleClass="error-label" />
 
-                <HBox spacing="15">
+                <HBox spacing="15"
+                      alignment="CENTER_LEFT">
                     <children>
                         <Button text="Refresh"
                                 onAction="#handleRefresh"
@@ -84,11 +146,6 @@
                                 onAction="#handleMarkAsPaid"
                                 prefWidth="200"
                                 styleClass="primary-button" />
-
-                        <Button text="Back to Dashboard"
-                                onAction="#goBackToDashboard"
-                                prefWidth="180"
-                                styleClass="menu-button" />
                     </children>
                 </HBox>
 

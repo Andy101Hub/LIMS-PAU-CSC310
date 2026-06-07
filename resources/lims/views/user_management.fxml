@@ -7,21 +7,82 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="lims.controllers.UserManagementController"
-            prefWidth="900"
-            prefHeight="600"
+            prefWidth="1100"
+            prefHeight="650"
             styleClass="dashboard-background">
+
+    <left>
+        <VBox spacing="18"
+              prefWidth="230"
+              styleClass="admin-sidebar">
+
+            <children>
+                <VBox spacing="3">
+                    <children>
+                        <Label text="SANTÉ"
+                               styleClass="sidebar-brand-title" />
+
+                        <Label text="DIAGNOSTICS LIMS"
+                               styleClass="sidebar-brand-subtitle" />
+                    </children>
+                </VBox>
+
+                <Region prefHeight="18" />
+
+                <Button text="Dashboard"
+                        onAction="#goBackToDashboard"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Button text="User Management"
+                        onAction="#openUserManagement"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button-active" />
+
+                <Button text="Custom Test Builder"
+                        onAction="#openTestBuilder"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Button text="Test Request Queue"
+                        onAction="#openTestRequestQueue"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Button text="Audit Trail"
+                        onAction="#openAuditTrail"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <Button text="Logout"
+                        onAction="#handleLogout"
+                        prefWidth="198"
+                        styleClass="admin-logout-button" />
+            </children>
+        </VBox>
+    </left>
 
     <top>
         <HBox spacing="20"
+              alignment="CENTER_LEFT"
               styleClass="top-bar">
 
             <children>
                 <Label text="User Management"
                        styleClass="dashboard-title" />
+
+                <Region HBox.hgrow="ALWAYS" />
+
+                <Button text="← Back to Dashboard"
+                        onAction="#goBackToDashboard"
+                        styleClass="back-dashboard-button" />
             </children>
         </HBox>
     </top>
@@ -60,11 +121,6 @@
                         onAction="#handleCreateAccount"
                         prefWidth="320"
                         styleClass="primary-button" />
-
-                <Button text="Back to Dashboard"
-                        onAction="#goBackToDashboard"
-                        prefWidth="320"
-                        styleClass="menu-button" />
 
             </children>
         </VBox>

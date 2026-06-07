@@ -4,73 +4,162 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="lims.controllers.SuperAdminDashboardController"
-            prefWidth="900"
-            prefHeight="600"
+            prefWidth="1100"
+            prefHeight="650"
             styleClass="dashboard-background">
 
-    <top>
-        <HBox spacing="20"
-              styleClass="top-bar">
-
-            <children>
-                <Label text="LIMS Super Admin Dashboard"
-                       styleClass="dashboard-title" />
-
-                <Label fx:id="welcomeLabel"
-                       text="Welcome"
-                       styleClass="welcome-label" />
-            </children>
-        </HBox>
-    </top>
-
     <left>
-        <VBox spacing="15"
-              prefWidth="220"
-              styleClass="side-menu">
+        <VBox spacing="18"
+              prefWidth="230"
+              styleClass="admin-sidebar">
 
             <children>
+                <VBox spacing="3">
+                    <children>
+                        <Label text="SANTÉ"
+                               styleClass="sidebar-brand-title" />
+                        <Label text="DIAGNOSTICS LIMS"
+                               styleClass="sidebar-brand-subtitle" />
+                    </children>
+                </VBox>
+
+                <Region prefHeight="18" />
+
+                <Button text="Dashboard"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button-active" />
+
                 <Button text="User Management"
                         onAction="#openUserManagement"
-                        prefWidth="180"
-                        styleClass="menu-button" />
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
 
                 <Button text="Custom Test Builder"
                         onAction="#openTestBuilder"
-                        prefWidth="180"
-                        styleClass="menu-button" />
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
 
                 <Button text="Test Request Queue"
                         onAction="#openTestRequestQueue"
-                        prefWidth="180"
-                        styleClass="menu-button" />
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
 
                 <Button text="Audit Trail"
                         onAction="#openAuditTrail"
-                        prefWidth="180"
-                        styleClass="menu-button" />
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Region VBox.vgrow="ALWAYS" />
 
                 <Button text="Logout"
                         onAction="#handleLogout"
-                        prefWidth="180"
-                        styleClass="logout-button" />
+                        prefWidth="198"
+                        styleClass="admin-logout-button" />
             </children>
         </VBox>
     </left>
 
     <center>
-        <VBox alignment="CENTER"
-              spacing="15">
+        <VBox spacing="22"
+              styleClass="admin-main-area">
 
             <children>
-                <Label text="Administrative Governance Panel"
-                       styleClass="section-heading" />
+                <HBox spacing="20"
+                      alignment="CENTER_LEFT">
 
-                <Label text="Use the menu on the left to manage users, tests, requests, and audit logs."
-                       styleClass="normal-text" />
+                    <children>
+                        <VBox spacing="4">
+                            <children>
+                                <Label text="Dashboard Overview"
+                                       styleClass="admin-hero-title" />
+
+                                <Label fx:id="welcomeLabel"
+                                       text="Welcome, Super Admin"
+                                       styleClass="admin-hero-subtitle" />
+                            </children>
+                        </VBox>
+
+                        <Region HBox.hgrow="ALWAYS" />
+
+                        <Label text="Super Admin Panel"
+                               styleClass="admin-hero-subtitle" />
+                    </children>
+                </HBox>
+
+                <HBox spacing="18">
+                    <children>
+                        <VBox spacing="8"
+                              prefWidth="190"
+                              styleClass="stat-card">
+                            <children>
+                                <Label text="TOTAL USERS"
+                                       styleClass="stat-title" />
+                                <Label text="24"
+                                       styleClass="stat-number" />
+                                <Label text="+ user accounts"
+                                       styleClass="stat-note" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="8"
+                              prefWidth="190"
+                              styleClass="stat-card">
+                            <children>
+                                <Label text="TEST TYPES"
+                                       styleClass="stat-title" />
+                                <Label text="12"
+                                       styleClass="stat-number" />
+                                <Label text="Available tests"
+                                       styleClass="stat-note" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="8"
+                              prefWidth="190"
+                              styleClass="stat-card">
+                            <children>
+                                <Label text="REQUESTS"
+                                       styleClass="stat-title" />
+                                <Label text="53"
+                                       styleClass="stat-number" />
+                                <Label text="Customer requests"
+                                       styleClass="stat-note" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="8"
+                              prefWidth="190"
+                              styleClass="stat-card">
+                            <children>
+                                <Label text="PENDING"
+                                       styleClass="stat-title" />
+                                <Label text="7"
+                                       styleClass="stat-number" />
+                                <Label text="Requires attention"
+                                       styleClass="stat-note" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <VBox spacing="8"
+                      styleClass="admin-hero-card">
+                    <children>
+                        <Label text="Administrative Governance Panel"
+                               styleClass="admin-section-title" />
+
+                        <Label text="Use the sidebar to manage system users, build laboratory tests, monitor test requests, and review audit activities."
+                               styleClass="admin-section-text" />
+
+                        <Label text="This dashboard gives the Super Admin quick access to the main control areas of the Laboratory Information Management System."
+                               styleClass="admin-section-text" />
+                    </children>
+                </VBox>
             </children>
         </VBox>
     </center>

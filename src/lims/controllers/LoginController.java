@@ -21,6 +21,7 @@ import javafx.scene.Node;
 import javafx.event.ActionEvent;
 
 import lims.utils.SceneNavigator;
+import javafx.scene.control.Button;
 
 public class LoginController {
 
@@ -29,6 +30,14 @@ public class LoginController {
 
     @FXML
     private PasswordField passwordField;
+    
+    @FXML
+    private TextField visiblePasswordField;
+
+    @FXML
+    private Button togglePasswordButton;
+
+    private boolean passwordVisible = false;
 
     @FXML
     private Label messageLabel;
@@ -36,7 +45,7 @@ public class LoginController {
     @FXML
     private void handleLogin(ActionEvent event) {
         String email = emailField.getText().trim();
-        String password = passwordField.getText();
+        String password = passwordVisible ? visiblePasswordField.getText() : passwordField.getText();
 
         if (email.isEmpty() || password.isEmpty()) {
             messageLabel.setText("Please enter email and password.");
@@ -159,5 +168,30 @@ public class LoginController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+    
+    @FXML
+    private void togglePasswordVisibility() {
+        if (passwordVisible) {
+            passwordField.setText(visiblePasswordField.getText());
+            passwordField.setVisible(true);
+            passwordField.setManaged(true);
+
+            visiblePasswordField.setVisible(false);
+            visiblePasswordField.setManaged(false);
+
+            togglePasswordButton.setText("👁");
+            passwordVisible = false;
+        } else {
+            visiblePasswordField.setText(passwordField.getText());
+            visiblePasswordField.setVisible(true);
+            visiblePasswordField.setManaged(true);
+
+            passwordField.setVisible(false);
+            passwordField.setManaged(false);
+
+            togglePasswordButton.setText("🙈");
+            passwordVisible = true;
+        }
     }
 }

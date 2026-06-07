@@ -6,21 +6,82 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="lims.controllers.AuditTrailController"
-            prefWidth="1000"
+            prefWidth="1100"
             prefHeight="650"
             styleClass="dashboard-background">
 
+    <left>
+        <VBox spacing="18"
+              prefWidth="230"
+              styleClass="admin-sidebar">
+
+            <children>
+                <VBox spacing="3">
+                    <children>
+                        <Label text="SANTÉ"
+                               styleClass="sidebar-brand-title" />
+
+                        <Label text="DIAGNOSTICS LIMS"
+                               styleClass="sidebar-brand-subtitle" />
+                    </children>
+                </VBox>
+
+                <Region prefHeight="18" />
+
+                <Button text="Dashboard"
+                        onAction="#goBackToDashboard"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Button text="User Management"
+                        onAction="#openUserManagement"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Button text="Custom Test Builder"
+                        onAction="#openTestBuilder"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Button text="Test Request Queue"
+                        onAction="#openTestRequestQueue"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Button text="Audit Trail"
+                        onAction="#openAuditTrail"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button-active" />
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <Button text="Logout"
+                        onAction="#handleLogout"
+                        prefWidth="198"
+                        styleClass="admin-logout-button" />
+            </children>
+        </VBox>
+    </left>
+
     <top>
         <HBox spacing="20"
+              alignment="CENTER_LEFT"
               styleClass="top-bar">
 
             <children>
                 <Label text="Audit Trail"
                        styleClass="dashboard-title" />
+
+                <Region HBox.hgrow="ALWAYS" />
+
+                <Button text="← Back to Dashboard"
+                        onAction="#goBackToDashboard"
+                        styleClass="back-dashboard-button" />
             </children>
         </HBox>
     </top>
@@ -35,33 +96,33 @@
                        styleClass="section-heading" />
 
                 <TableView fx:id="auditTable"
-                           prefWidth="900"
+                           prefWidth="840"
                            prefHeight="430">
 
                     <columns>
                         <TableColumn fx:id="auditIdColumn"
                                      text="ID"
-                                     prefWidth="60" />
+                                     prefWidth="55" />
 
                         <TableColumn fx:id="userNameColumn"
                                      text="User"
-                                     prefWidth="150" />
+                                     prefWidth="120" />
 
                         <TableColumn fx:id="userEmailColumn"
                                      text="Email"
-                                     prefWidth="180" />
+                                     prefWidth="165" />
 
                         <TableColumn fx:id="actionColumn"
                                      text="Action"
-                                     prefWidth="170" />
+                                     prefWidth="150" />
 
                         <TableColumn fx:id="detailsColumn"
                                      text="Details"
-                                     prefWidth="250" />
+                                     prefWidth="225" />
 
                         <TableColumn fx:id="createdAtColumn"
                                      text="Date/Time"
-                                     prefWidth="160" />
+                                     prefWidth="125" />
                     </columns>
                 </TableView>
 
@@ -69,16 +130,12 @@
                        text=""
                        styleClass="error-label" />
 
-                <HBox spacing="15">
+                <HBox spacing="15"
+                      alignment="CENTER_LEFT">
                     <children>
                         <Button text="Refresh"
                                 onAction="#handleRefresh"
                                 prefWidth="160"
-                                styleClass="menu-button" />
-
-                        <Button text="Back to Dashboard"
-                                onAction="#goBackToDashboard"
-                                prefWidth="180"
                                 styleClass="menu-button" />
                     </children>
                 </HBox>
