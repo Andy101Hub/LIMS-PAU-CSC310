@@ -9,7 +9,7 @@ public class DBConnection {
     // Database connection details
     private static final String URL = "jdbc:postgresql://localhost:5432/lims_db";
     private static final String USER = "postgres";
-    private static final String PASSWORD = "Postgres_Pass";
+    private static final String PASSWORD = "kiitan123";
 
     // This method creates and returns a connection to the database
     public static Connection getConnection() throws SQLException {
