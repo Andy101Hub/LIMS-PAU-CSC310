@@ -1,38 +1,138 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="550.0" prefWidth="850.0"
+<BorderPane prefWidth="1100.0"
+            prefHeight="650.0"
             xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="lims.controllers.TestCatalogueController">
+            fx:controller="lims.controllers.TestCatalogueController"
+            styleClass="dashboard-background">
 
-    <children>
-        <Label text="Available Laboratory Tests" layoutX="330" layoutY="30" />
+    <left>
+        <VBox spacing="18"
+              prefWidth="230"
+              styleClass="admin-sidebar">
 
-        <TableView fx:id="testsTable" layoutX="40" layoutY="80" prefWidth="760" prefHeight="330">
-            <columns>
-                <TableColumn fx:id="nameColumn" text="Test Name" prefWidth="190" />
-                <TableColumn fx:id="categoryColumn" text="Category" prefWidth="140" />
-                <TableColumn fx:id="priceColumn" text="Price" prefWidth="110" />
-                <TableColumn fx:id="turnaroundColumn" text="Turnaround Hours" prefWidth="160" />
-                <TableColumn fx:id="formatColumn" text="Result Format" prefWidth="150" />
-            </columns>
-        </TableView>
+            <children>
+                <VBox spacing="3">
+                    <children>
+                        <Label text="SANTÉ"
+                               styleClass="sidebar-brand-title" />
+                        <Label text="DIAGNOSTICS LIMS"
+                               styleClass="sidebar-brand-subtitle" />
+                    </children>
+                </VBox>
 
-        <Label fx:id="messageLabel" text="" layoutX="40" layoutY="425" />
+                <Region prefHeight="18" />
 
-        <Button text="Submit Test Request"
-                layoutX="40"
-                layoutY="460"
-                prefWidth="180"
-                onAction="#submitTestRequest" />
+                <Button text="Dashboard"
+                        onAction="#backToDashboard"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
 
-        <Button text="Back to Dashboard"
-                layoutX="240"
-                layoutY="460"
-                prefWidth="160"
-                onAction="#backToDashboard" />
-    </children>
-</AnchorPane>
+                <Button text="View Available Tests"
+                        onAction="#openTestCatalogue"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button-active" />
+
+                <Button text="View My Requests"
+                        onAction="#openMyRequests"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Button text="Open Result Vault"
+                        onAction="#openResultVault"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <Button text="Logout"
+                        onAction="#handleLogout"
+                        prefWidth="198"
+                        styleClass="admin-logout-button" />
+            </children>
+        </VBox>
+    </left>
+
+    <top>
+        <HBox spacing="20"
+              alignment="CENTER_LEFT"
+              styleClass="top-bar">
+            <children>
+                <Label text="Available Tests"
+                       styleClass="dashboard-title" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button text="← Back to Dashboard"
+                        onAction="#backToDashboard"
+                        styleClass="back-dashboard-button" />
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox styleClass="customer-main-area">
+            <children>
+                <VBox spacing="12"
+                      styleClass="customer-content-card">
+                    <children>
+                        <Label text="Browse Laboratory Tests"
+                               styleClass="customer-section-title" />
+
+                        <Label text="Select a test from the table and submit your request. Payment information will be shown after submission."
+                               styleClass="customer-section-text" />
+
+                        <TableView fx:id="testsTable"
+                                   prefWidth="820"
+                                   prefHeight="330">
+                            <columns>
+                                <TableColumn fx:id="nameColumn" text="Test Name" prefWidth="190" />
+                                <TableColumn fx:id="categoryColumn" text="Category" prefWidth="140" />
+                                <TableColumn fx:id="priceColumn" text="Price" prefWidth="110" />
+                                <TableColumn fx:id="turnaroundColumn" text="Turnaround Hours" prefWidth="160" />
+                                <TableColumn fx:id="formatColumn" text="Result Format" prefWidth="180" />
+                            </columns>
+                        </TableView>
+
+                        <Label fx:id="messageLabel"
+                               text=""
+                               styleClass="error-label" />
+
+                        <HBox spacing="14">
+                            <children>
+                                <Button text="Submit Test Request"
+                                        onAction="#submitTestRequest"
+                                        prefWidth="190"
+                                        styleClass="primary-button" />
+
+                                <Button text="Go to My Requests"
+                                        onAction="#openMyRequests"
+                                        prefWidth="180"
+                                        styleClass="secondary-button" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+
+                <VBox spacing="8"
+                      styleClass="customer-note-card">
+                    <children>
+                        <Label text="Payment Note"
+                               styleClass="customer-note-title" />
+                        <Label text="After requesting a test, please use the payment details provided and wait for confirmation before sample processing begins."
+                               styleClass="customer-note-text" />
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </center>
+
+</BorderPane>

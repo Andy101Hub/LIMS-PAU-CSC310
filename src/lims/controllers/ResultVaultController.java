@@ -14,6 +14,7 @@ import javafx.stage.Stage;
 
 import lims.models.ResultItem;
 import lims.utils.SceneNavigator;
+import lims.utils.SessionManager;
 
 public class ResultVaultController {
 
@@ -98,5 +99,51 @@ public class ResultVaultController {
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }
+    
+    @FXML
+    private void openTestCatalogue(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        SceneNavigator.switchScene(
+            stage,
+            "/lims/views/test_catalogue.fxml",
+            "Available Tests"
+        );
+    }
+
+    @FXML
+    private void openMyRequests(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        SceneNavigator.switchScene(
+            stage,
+            "/lims/views/my_requests.fxml",
+            "My Test Requests"
+        );
+    }
+
+    @FXML
+    private void openResultVault(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        SceneNavigator.switchScene(
+            stage,
+            "/lims/views/result_vault.fxml",
+            "Result Vault"
+        );
+    }
+
+    @FXML
+    private void handleLogout(ActionEvent event) {
+        SessionManager.logout();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        SceneNavigator.switchScene(
+            stage,
+            "/lims/views/login.fxml",
+            "LIMS Login"
+        );
     }
 }

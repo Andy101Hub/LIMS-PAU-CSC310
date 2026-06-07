@@ -58,4 +58,17 @@ public class CustomerDashboardController {
                 "Result Vault"
         );
     }
+    
+    @FXML
+    private void handleLogout(ActionEvent event) {
+        SessionManager.logout();
+
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        SceneNavigator.switchScene(
+            stage,
+            "/lims/views/login.fxml",
+            "LIMS Login"
+        );
+    }
 }

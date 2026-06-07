@@ -4,27 +4,140 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="450.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lims.controllers.CustomerRegisterController">
+<BorderPane prefWidth="1000.0"
+            prefHeight="620.0"
+            xmlns="http://javafx.com/javafx/25"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="lims.controllers.CustomerRegisterController"
+            styleClass="auth-background">
 
-    <children>
-        <Label layoutX="220" layoutY="40" text="Customer Registration" />
+    <left>
+        <VBox prefWidth="360"
+              spacing="22"
+              styleClass="auth-left-panel">
 
-        <Label layoutX="120" layoutY="100" text="Full Name:" />
-        <TextField fx:id="fullNameField" layoutX="250" layoutY="95" prefWidth="220" />
+            <children>
+                <VBox spacing="4">
+                    <children>
+                        <Label text="SANTÉ"
+                               styleClass="brand-title" />
 
-        <Label layoutX="120" layoutY="150" text="Email:" />
-        <TextField fx:id="emailField" layoutX="250" layoutY="145" prefWidth="220" />
+                        <Label text="DIAGNOSTICS LIMS"
+                               styleClass="brand-subtitle" />
+                    </children>
+                </VBox>
 
-        <Label layoutX="120" layoutY="200" text="Password:" />
-        <PasswordField fx:id="passwordField" layoutX="250" layoutY="195" prefWidth="220" />
+                <Region prefHeight="55" />
 
-        <Label layoutX="120" layoutY="250" text="Confirm Password:" />
-        <PasswordField fx:id="confirmPasswordField" layoutX="250" layoutY="245" prefWidth="220" />
+                <Label text="Create your account."
+                       wrapText="true"
+                       styleClass="hero-title" />
 
-        <Label fx:id="messageLabel" layoutX="180" layoutY="285" />
+                <Label text="Join Santé Diagnostics to request laboratory tests, track your requests, and access validated results from your customer dashboard."
+                       wrapText="true"
+                       styleClass="hero-text" />
 
-        <Button layoutX="250" layoutY="320" onAction="#registerCustomer" prefWidth="120" text="Register" />
-    </children>
-</AnchorPane>
+                <Region VBox.vgrow="ALWAYS" />
+
+                <Label text="Secure • Fast • Reliable"
+                       styleClass="hero-text" />
+            </children>
+        </VBox>
+    </left>
+
+    <center>
+        <VBox alignment="CENTER"
+              styleClass="auth-background">
+
+            <children>
+                <VBox spacing="14"
+                      prefWidth="420"
+                      styleClass="auth-card">
+
+                    <children>
+                        <VBox spacing="4">
+                            <children>
+                                <Label text="Create Your Account"
+                                       styleClass="auth-title" />
+
+                                <Label text="Fill in your details to access laboratory services."
+                                       styleClass="auth-subtitle" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="6">
+                            <children>
+                                <Label text="Full Name"
+                                       styleClass="input-label" />
+
+                                <TextField fx:id="fullNameField"
+                                           promptText="Enter your full name"
+                                           prefWidth="360"
+                                           styleClass="auth-input" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="6">
+                            <children>
+                                <Label text="Email"
+                                       styleClass="input-label" />
+
+                                <TextField fx:id="emailField"
+                                           promptText="Enter your email address"
+                                           prefWidth="360"
+                                           styleClass="auth-input" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="6">
+                            <children>
+                                <Label text="Password"
+                                       styleClass="input-label" />
+
+                                <PasswordField fx:id="passwordField"
+                                               promptText="Create a password"
+                                               prefWidth="360"
+                                               styleClass="auth-input" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="6">
+                            <children>
+                                <Label text="Confirm Password"
+                                       styleClass="input-label" />
+
+                                <PasswordField fx:id="confirmPasswordField"
+                                               promptText="Confirm your password"
+                                               prefWidth="360"
+                                               styleClass="auth-input" />
+                            </children>
+                        </VBox>
+
+                        <Button text="Create Account"
+                                onAction="#registerCustomer"
+                                prefWidth="360"
+                                styleClass="primary-button" />
+
+                        <HBox alignment="CENTER"
+                              spacing="5">
+                            <children>
+                                <Label text="Already have an account?"
+                                       styleClass="auth-subtitle" />
+
+                                <Button text="Sign in"
+                                        onAction="#backToLogin"
+                                        styleClass="link-button" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </center>
+
+</BorderPane>

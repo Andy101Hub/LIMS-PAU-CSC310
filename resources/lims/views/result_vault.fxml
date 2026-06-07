@@ -1,69 +1,147 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="500.0"
-            prefWidth="800.0"
+<BorderPane prefWidth="1100.0"
+            prefHeight="650.0"
             xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="lims.controllers.ResultVaultController">
+            fx:controller="lims.controllers.ResultVaultController"
+            styleClass="dashboard-background">
 
-    <children>
+    <left>
+        <VBox spacing="18"
+              prefWidth="230"
+              styleClass="admin-sidebar">
 
-        <Label layoutX="350"
-               layoutY="25"
-               text="Result Vault" />
+            <children>
+                <VBox spacing="3">
+                    <children>
+                        <Label text="SANTÉ"
+                               styleClass="sidebar-brand-title" />
+                        <Label text="DIAGNOSTICS LIMS"
+                               styleClass="sidebar-brand-subtitle" />
+                    </children>
+                </VBox>
 
-        <TableView fx:id="resultsTable"
-                   layoutX="40"
-                   layoutY="70"
-                   prefHeight="300"
-                   prefWidth="720">
+                <Region prefHeight="18" />
 
-            <columns>
-                <TableColumn fx:id="testNameColumn" text="Test Name" prefWidth="180" />
-                <TableColumn fx:id="statusColumn" text="Status" prefWidth="120" />
-                <TableColumn fx:id="pdfColumn" text="PDF Report" prefWidth="150" />
-                <TableColumn fx:id="imageColumn" text="Medical Image" prefWidth="150" />
-            </columns>
+                <Button text="Dashboard"
+                        onAction="#backToDashboard"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
 
-        </TableView>
+                <Button text="View Available Tests"
+                        onAction="#openTestCatalogue"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
 
-        <Button layoutX="40"
-                layoutY="390"
-                text="View PDF Report"
-                prefWidth="150"
-                onAction="#viewPdfReport" />
+                <Button text="View My Requests"
+                        onAction="#openMyRequests"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
 
-        <Button layoutX="210"
-                layoutY="390"
-                text="Download PDF"
-                prefWidth="150"
-                onAction="#downloadPdfReport" />
+                <Button text="Open Result Vault"
+                        onAction="#openResultVault"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button-active" />
 
-        <Button layoutX="380"
-                layoutY="390"
-                text="View Medical Image"
-                prefWidth="160"
-                onAction="#viewMedicalImage" />
+                <Region VBox.vgrow="ALWAYS" />
 
-        <Button layoutX="560"
-                layoutY="390"
-                text="Download Image"
-                prefWidth="150"
-                onAction="#downloadMedicalImage" />
+                <Button text="Logout"
+                        onAction="#handleLogout"
+                        prefWidth="198"
+                        styleClass="admin-logout-button" />
+            </children>
+        </VBox>
+    </left>
 
-        <Label fx:id="messageLabel"
-               layoutX="40"
-               layoutY="430"
-               text="Only validated laboratory results will appear here." />
+    <top>
+        <HBox spacing="20"
+              alignment="CENTER_LEFT"
+              styleClass="top-bar">
+            <children>
+                <Label text="Result Vault"
+                       styleClass="dashboard-title" />
+                <Region HBox.hgrow="ALWAYS" />
+                <Button text="← Back to Dashboard"
+                        onAction="#backToDashboard"
+                        styleClass="back-dashboard-button" />
+            </children>
+        </HBox>
+    </top>
 
-        <Button layoutX="40"
-                layoutY="455"
-                text="Back to Dashboard"
-                onAction="#backToDashboard" />
+    <center>
+        <VBox styleClass="customer-main-area">
+            <children>
+                <VBox spacing="12"
+                      styleClass="customer-content-card">
+                    <children>
+                        <Label text="Validated Results"
+                               styleClass="customer-section-title" />
 
-    </children>
+                        <Label text="Only released or validated laboratory results should appear here."
+                               styleClass="customer-section-text" />
 
-</AnchorPane>
+                        <TableView fx:id="resultsTable"
+                                   prefWidth="820"
+                                   prefHeight="300">
+                            <columns>
+                                <TableColumn fx:id="testNameColumn" text="Test Name" prefWidth="220" />
+                                <TableColumn fx:id="statusColumn" text="Status" prefWidth="140" />
+                                <TableColumn fx:id="pdfColumn" text="PDF Report" prefWidth="200" />
+                                <TableColumn fx:id="imageColumn" text="Medical Image" prefWidth="200" />
+                            </columns>
+                        </TableView>
+
+                        <HBox spacing="12">
+                            <children>
+                                <Button text="View PDF Report"
+                                        onAction="#viewPdfReport"
+                                        prefWidth="150"
+                                        styleClass="primary-button" />
+
+                                <Button text="Download PDF"
+                                        onAction="#downloadPdfReport"
+                                        prefWidth="140"
+                                        styleClass="secondary-button" />
+
+                                <Button text="View Medical Image"
+                                        onAction="#viewMedicalImage"
+                                        prefWidth="170"
+                                        styleClass="secondary-button" />
+
+                                <Button text="Download Image"
+                                        onAction="#downloadMedicalImage"
+                                        prefWidth="150"
+                                        styleClass="secondary-button" />
+                            </children>
+                        </HBox>
+
+                        <Label fx:id="messageLabel"
+                               text="Only validated laboratory results will appear here."
+                               styleClass="customer-section-text" />
+                    </children>
+                </VBox>
+
+                <VBox spacing="8"
+                      styleClass="customer-note-card">
+                    <children>
+                        <Label text="Vault Information"
+                               styleClass="customer-note-title" />
+                        <Label text="This section is for customer access to validated reports only. Draft or unvalidated reports should not appear here."
+                               styleClass="customer-note-text" />
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </center>
+
+</BorderPane>

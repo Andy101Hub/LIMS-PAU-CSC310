@@ -68,6 +68,18 @@ public class LoginController {
             }
 
             SessionManager.setCurrentUser(user);
+            
+            if (!user.isEmailVerified() && user.getRole().equals("CUSTOMER")) {
+                Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+                SceneNavigator.switchScene(
+                    stage,
+                    "/lims/views/email_verification.fxml",
+                    "Email Verification"
+                );
+
+                return;
+            }
 
             if (user.isForcePasswordChange()) {
                 Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
