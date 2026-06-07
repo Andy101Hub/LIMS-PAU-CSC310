@@ -1,8 +1,6 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package lims.models;
+
+import java.io.File;
 
 public class ResultItem {
 
@@ -11,11 +9,29 @@ public class ResultItem {
     private String pdfReport;
     private String medicalImage;
 
-    public ResultItem(String testName, String status, String pdfReport, String medicalImage) {
+    private String pdfReportPath;
+    private String medicalImagePath;
+
+    public ResultItem(String testName,
+                      String status,
+                      String pdfReportPath,
+                      String medicalImagePath) {
         this.testName = testName;
         this.status = status;
-        this.pdfReport = pdfReport;
-        this.medicalImage = medicalImage;
+        this.pdfReportPath = pdfReportPath;
+        this.medicalImagePath = medicalImagePath;
+
+        this.pdfReport = buildDisplayName(pdfReportPath, "No PDF");
+        this.medicalImage = buildDisplayName(medicalImagePath, "No Image");
+    }
+
+    private String buildDisplayName(String path, String defaultText) {
+        if (path == null || path.trim().isEmpty()) {
+            return defaultText;
+        }
+
+        File file = new File(path);
+        return file.getName();
     }
 
     public String getTestName() {
@@ -32,5 +48,13 @@ public class ResultItem {
 
     public String getMedicalImage() {
         return medicalImage;
+    }
+
+    public String getPdfReportPath() {
+        return pdfReportPath;
+    }
+
+    public String getMedicalImagePath() {
+        return medicalImagePath;
     }
 }

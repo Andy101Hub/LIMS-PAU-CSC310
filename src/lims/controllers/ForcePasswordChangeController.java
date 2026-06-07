@@ -59,7 +59,7 @@ public class ForcePasswordChangeController {
 
         try {
             updatePasswordInDatabase(currentUser.getUserId(), hashedPassword);
-            
+
             insertAuditLog(
                     "FORCE_PASSWORD_CHANGE",
                     "User changed temporary password after first login."
@@ -107,16 +107,24 @@ public class ForcePasswordChangeController {
             );
 
         } else if (role.equals("LAB_ATTENDANT")) {
-            messageLabel.setText("Lab Attendant dashboard will be connected by Person 2.");
+            SceneNavigator.switchScene(
+                    stage,
+                    "/lims/views/lab_attendant_dashboard.fxml",
+                    "Lab Attendant Dashboard"
+            );
 
         } else if (role.equals("CUSTOMER")) {
-            messageLabel.setText("Customer dashboard will be connected by Person 3.");
+            SceneNavigator.switchScene(
+                    stage,
+                    "/lims/views/customer_dashboard.fxml",
+                    "Customer Dashboard"
+            );
 
         } else {
             messageLabel.setText("Unknown user role: " + role);
         }
     }
-    
+
     private void insertAuditLog(String action, String details) throws SQLException {
         String sql = "INSERT INTO audit_logs (user_id, action, details) "
                    + "VALUES (?, ?, ?)";

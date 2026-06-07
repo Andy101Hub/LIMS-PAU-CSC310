@@ -48,6 +48,11 @@
                         onAction="#openTestRequestQueue"
                         prefWidth="198"
                         styleClass="sidebar-menu-button" />
+                
+                <Button text="Password Reset Requests"
+                        onAction="#openPasswordResetRequests"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
 
                 <Button text="Audit Trail"
                         onAction="#openAuditTrail"
@@ -99,7 +104,8 @@
                             <children>
                                 <Label text="TOTAL USERS"
                                        styleClass="stat-title" />
-                                <Label text="24"
+                                <Label fx:id="totalUsersLabel"
+                                       text="0"
                                        styleClass="stat-number" />
                                 <Label text="+ user accounts"
                                        styleClass="stat-note" />
@@ -112,7 +118,8 @@
                             <children>
                                 <Label text="TEST TYPES"
                                        styleClass="stat-title" />
-                                <Label text="12"
+                                <Label fx:id="testTypesLabel"
+                                       text="0"
                                        styleClass="stat-number" />
                                 <Label text="Available tests"
                                        styleClass="stat-note" />
@@ -125,7 +132,8 @@
                             <children>
                                 <Label text="REQUESTS"
                                        styleClass="stat-title" />
-                                <Label text="53"
+                                <Label fx:id="totalRequestsLabel"
+                                       text="0"
                                        styleClass="stat-number" />
                                 <Label text="Customer requests"
                                        styleClass="stat-note" />
@@ -138,7 +146,8 @@
                             <children>
                                 <Label text="PENDING"
                                        styleClass="stat-title" />
-                                <Label text="7"
+                                <Label fx:id="pendingRequestsLabel"
+                                       text="0"
                                        styleClass="stat-number" />
                                 <Label text="Requires attention"
                                        styleClass="stat-note" />

@@ -66,4 +66,51 @@ public class EmailService {
 
         Transport.send(message);
     }
+    
+    public static void sendTemporaryPassword(String recipientEmail,
+                                         String recipientName,
+                                         String temporaryPassword) throws Exception {
+
+        Properties properties = new Properties();
+
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+        properties.put("mail.smtp.host", SMTP_HOST);
+        properties.put("mail.smtp.port", SMTP_PORT);
+        properties.put("mail.smtp.connectiontimeout", "10000");
+        properties.put("mail.smtp.timeout", "10000");
+        properties.put("mail.smtp.writetimeout", "10000");
+        properties.put("mail.smtp.ssl.trust", SMTP_HOST);
+
+        Session session = Session.getInstance(properties, new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(SENDER_EMAIL, SENDER_PASSWORD);
+            }
+        });
+
+        Message message = new MimeMessage(session);
+
+        message.setFrom(new InternetAddress(SENDER_EMAIL));
+        message.setRecipients(
+            Message.RecipientType.TO,
+            InternetAddress.parse(recipientEmail)
+        );
+
+        message.setSubject("Santé Diagnostics Temporary Password");
+
+        String emailBody =
+            "Hello " + recipientName + ",\n\n"
+            + "A password reset was requested for your Santé Diagnostics account.\n\n"
+            + "Your temporary password is:\n\n"
+            + temporaryPassword + "\n\n"
+            + "Please log in using this temporary password. "
+            + "You will be required to change it immediately after login.\n\n"
+            + "If you did not request this reset, please contact Santé Diagnostics.\n\n"
+            + "Santé Diagnostics LIMS";
+
+        message.setText(emailBody);
+
+        Transport.send(message);
+    }
 }

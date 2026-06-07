@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/main/Main.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/db/DBConnection.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/models/User.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/models/TestType.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/controllers/LoginController.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/controllers/ForcePasswordChangeController.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/controllers/SuperAdminDashboardController.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/controllers/TestBuilderController.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/controllers/TestRequestQueueController.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/controllers/AuditTrailController.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/utils/BCryptUtil.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/utils/SessionManager.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/utils/SceneNavigator.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/resources/lims/views/login.fxml</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/resources/lims/styles/style.css</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/resources/lims/views/superadmin_dashboard.fxml</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/resources/lims/views/force_password_change.fxml</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/controllers/UserManagementController.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/resources/lims/views/user_management.fxml</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/resources/lims/views/test_builder.fxml</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/models/TestRequest.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/resources/lims/views/test_request_queue.fxml</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/models/AuditLog.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/resources/lims/views/audit_trail.fxml</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/resources/lims/views/customer_dashboard.fxml</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/resources/lims/views/test_catalogue.fxml</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/resources/lims/views/my_requests.fxml</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/resources/lims/views/result_vault.fxml</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/controllers/CustomerDashboardController.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/controllers/TestCatalogueController.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/controllers/MyRequestsController.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/controllers/ResultVaultController.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/resources/lims/views/customer_register.fxml</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/controllers/CustomerRegisterController.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/utils/EmailService.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/resources/lims/views/email_verification.fxml</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/controllers/EmailVerificationController.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/controllers/LabAttendantDashboardController.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/controllers/LabTestRequestQueueController.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/controllers/SampleTrackingController.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/controllers/ResultUploadValidationController.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/resources/lims/views/lab_attendant_dashboard.fxml</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/resources/lims/views/lab_test_request_queue.fxml</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/resources/lims/views/sample_tracking.fxml</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/resources/lims/views/result_upload_validation.fxml</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/models/ResultItem.java</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/resources/lims/views/lab_customer_profiles.fxml</file>
+            <file>file:/C:/Users/convy/Documents/NetBeansProjects/LIMS/src/lims/controllers/LabCustomerProfilesController.java</file>
+        </group>
+    </open-files>
+</project-private>
