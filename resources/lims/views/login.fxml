@@ -118,6 +118,7 @@
                     <children>
                         <CheckBox text="Remember me" />
                         <Button text="Forgot password?"
+                                onAction="#openForgotPassword"
                                 styleClass="link-button" />
                     </children>
                 </HBox>
@@ -131,22 +132,7 @@
                         prefWidth="320"
                         styleClass="primary-button" />
 
-                <Label text="Or sign in as"
-                       styleClass="auth-subtitle" />
-
-                <HBox spacing="10">
-                    <children>
-                        <Button text="Super Admin"
-                                prefWidth="100"
-                                styleClass="secondary-button" />
-                        <Button text="Lab Attendant"
-                                prefWidth="105"
-                                styleClass="secondary-button" />
-                        <Button text="Customer"
-                                prefWidth="100"
-                                styleClass="secondary-button" />
-                    </children>
-                </HBox>
+                
 
                 <HBox spacing="5" alignment="CENTER">
                     <children>

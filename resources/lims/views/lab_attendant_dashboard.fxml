@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefWidth="1100.0"
+            prefHeight="650.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="lims.controllers.LabAttendantDashboardController"
+            styleClass="dashboard-background">
+
+    <left>
+        <VBox spacing="18"
+              prefWidth="230"
+              styleClass="admin-sidebar">
+
+            <children>
+                <VBox spacing="3">
+                    <children>
+                        <Label text="SANTÉ"
+                               styleClass="sidebar-brand-title" />
+
+                        <Label text="DIAGNOSTICS LIMS"
+                               styleClass="sidebar-brand-subtitle" />
+                    </children>
+                </VBox>
+
+                <Region prefHeight="18" />
+
+                <Button text="Dashboard"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button-active" />
+                
+                <Button text="Customer Profiles"
+                        onAction="#openCustomerProfiles"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Button text="Test Request Queue"
+                        onAction="#openLabRequestQueue"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Button text="Sample Tracking"
+                        onAction="#openSampleTracking"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Button text="Result Upload &amp; Validation"
+                        onAction="#openResultUploadValidation"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <Button text="Logout"
+                        onAction="#handleLogout"
+                        prefWidth="198"
+                        styleClass="admin-logout-button" />
+            </children>
+        </VBox>
+    </left>
+
+    <top>
+        <HBox spacing="20"
+              alignment="CENTER_LEFT"
+              styleClass="top-bar">
+
+            <children>
+                <Label text="Lab Attendant Dashboard"
+                       styleClass="dashboard-title" />
+
+                <Region HBox.hgrow="ALWAYS" />
+
+                <Label fx:id="welcomeLabel"
+                       text="Welcome, Lab Attendant"
+                       styleClass="welcome-label" />
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="22"
+              styleClass="admin-main-area">
+
+            <children>
+                <VBox spacing="8"
+                      styleClass="admin-hero-card">
+
+                    <children>
+                        <Label text="Operational Fulfilment Panel"
+                               styleClass="admin-hero-title" />
+
+                        <Label text="Manage customer requests, confirm payment status, track sample progress, and validate uploaded results."
+                               wrapText="true"
+                               styleClass="admin-hero-subtitle" />
+                    </children>
+                </VBox>
+
+                <HBox spacing="18">
+                    <children>
+                        <VBox spacing="8"
+                              prefWidth="240"
+                              styleClass="stat-card">
+
+                            <children>
+                                <Label text="REQUEST QUEUE"
+                                       styleClass="stat-title" />
+
+                                <Label text="View Orders"
+                                       styleClass="admin-section-title" />
+
+                                <Label text="Review customer test requests and payment status."
+                                       wrapText="true"
+                                       styleClass="admin-section-text" />
+
+                                <Button text="Open Queue"
+                                        onAction="#openLabRequestQueue"
+                                        prefWidth="170"
+                                        styleClass="primary-button" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="8"
+                              prefWidth="240"
+                              styleClass="stat-card">
+
+                            <children>
+                                <Label text="SAMPLE LIFECYCLE"
+                                       styleClass="stat-title" />
+
+                                <Label text="Track Samples"
+                                       styleClass="admin-section-title" />
+
+                                <Label text="Move samples from collection to processing and validation."
+                                       wrapText="true"
+                                       styleClass="admin-section-text" />
+
+                                <Button text="Track Samples"
+                                        onAction="#openSampleTracking"
+                                        prefWidth="170"
+                                        styleClass="primary-button" />
+                            </children>
+                        </VBox>
+
+                        <VBox spacing="8"
+                              prefWidth="260"
+                              styleClass="stat-card">
+
+                            <children>
+                                <Label text="RESULT VALIDATION"
+                                       styleClass="stat-title" />
+
+                                <Label text="Upload Results"
+                                       styleClass="admin-section-title" />
+
+                                <Label text="Attach PDF reports or medical images and release validated results."
+                                       wrapText="true"
+                                       styleClass="admin-section-text" />
+
+                                <Button text="Upload &amp; Validate"
+                                        onAction="#openResultUploadValidation"
+                                        prefWidth="180"
+                                        styleClass="primary-button" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <VBox spacing="8"
+                      styleClass="admin-hero-card">
+
+                    <children>
+                        <Label text="Workflow Reminder"
+                               styleClass="admin-section-title" />
+
+                        <Label text="Recommended flow: confirm payment, collect sample, process sample, upload result, manually validate result, then release it to the customer vault."
+                               wrapText="true"
+                               styleClass="admin-section-text" />
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </center>
+
+</BorderPane>

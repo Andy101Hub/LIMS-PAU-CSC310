@@ -103,7 +103,8 @@
                             <children>
                                 <Label text="TOTAL REQUESTS"
                                        styleClass="customer-stat-title" />
-                                <Label text="12"
+                                <Label fx:id="totalRequestsLabel"
+                                       text="0"
                                        styleClass="customer-stat-number" />
                                 <Label text="All submissions"
                                        styleClass="customer-stat-note" />
@@ -116,7 +117,8 @@
                             <children>
                                 <Label text="IN PROGRESS"
                                        styleClass="customer-stat-title" />
-                                <Label text="3"
+                                <Label fx:id="inProgressLabel"
+                                       text="0"
                                        styleClass="customer-stat-number" />
                                 <Label text="Currently processing"
                                        styleClass="customer-stat-note" />
@@ -129,7 +131,8 @@
                             <children>
                                 <Label text="READY RESULTS"
                                        styleClass="customer-stat-title" />
-                                <Label text="2"
+                                <Label fx:id="readyResultsLabel"
+                                       text="0"
                                        styleClass="customer-stat-number" />
                                 <Label text="Validated reports"
                                        styleClass="customer-stat-note" />
@@ -142,7 +145,8 @@
                             <children>
                                 <Label text="UNPAID"
                                        styleClass="customer-stat-title" />
-                                <Label text="1"
+                                <Label fx:id="unpaidLabel"
+                                       text="0"
                                        styleClass="customer-stat-number" />
                                 <Label text="Pending payment"
                                        styleClass="customer-stat-note" />

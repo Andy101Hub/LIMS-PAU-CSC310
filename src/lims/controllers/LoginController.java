@@ -160,7 +160,11 @@ public class LoginController {
             );
 
         } else if (role.equals("LAB_ATTENDANT")) {
-            showAlert("Login Successful", "Lab Attendant dashboard will be connected by Person 2.");
+            SceneNavigator.switchScene(
+                    stage,
+                    "/lims/views/lab_attendant_dashboard.fxml",
+                    "Lab Attendant Dashboard"
+            );
 
         } else if (role.equals("CUSTOMER")) {
             SceneNavigator.switchScene(
@@ -205,5 +209,16 @@ public class LoginController {
             togglePasswordButton.setText("🙈");
             passwordVisible = true;
         }
+    }
+    
+    @FXML
+    private void openForgotPassword(ActionEvent event) {
+        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+        SceneNavigator.switchScene(
+            stage,
+            "/lims/views/forgot_password.fxml",
+            "Forgot Password"
+        );
     }
 }

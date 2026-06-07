@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefWidth="1150.0"
+            prefHeight="650.0"
+            xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="lims.controllers.LabTestRequestQueueController"
+            styleClass="dashboard-background">
+
+    <left>
+        <VBox spacing="18"
+              prefWidth="230"
+              styleClass="admin-sidebar">
+
+            <children>
+                <VBox spacing="3">
+                    <children>
+                        <Label text="SANTÉ"
+                               styleClass="sidebar-brand-title" />
+
+                        <Label text="DIAGNOSTICS LIMS"
+                               styleClass="sidebar-brand-subtitle" />
+                    </children>
+                </VBox>
+
+                <Region prefHeight="18" />
+
+                <Button text="Dashboard"
+                        onAction="#backToDashboard"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+                
+                <Button text="Customer Profiles"
+                        onAction="#openCustomerProfiles"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Button text="Test Request Queue"
+                        onAction="#openLabRequestQueue"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button-active" />
+
+                <Button text="Sample Tracking"
+                        onAction="#openSampleTracking"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Button text="Result Upload &amp; Validation"
+                        onAction="#openResultUploadValidation"
+                        prefWidth="198"
+                        styleClass="sidebar-menu-button" />
+
+                <Region VBox.vgrow="ALWAYS" />
+
+                <Button text="Logout"
+                        onAction="#handleLogout"
+                        prefWidth="198"
+                        styleClass="admin-logout-button" />
+            </children>
+        </VBox>
+    </left>
+
+    <top>
+        <HBox spacing="20"
+              alignment="CENTER_LEFT"
+              styleClass="top-bar">
+
+            <children>
+                <Label text="Lab Test Request Queue"
+                       styleClass="dashboard-title" />
+
+                <Region HBox.hgrow="ALWAYS" />
+
+                <Button text="← Back to Dashboard"
+                        onAction="#backToDashboard"
+                        styleClass="back-dashboard-button" />
+            </children>
+        </HBox>
+    </top>
+
+    <center>
+        <VBox spacing="18"
+              styleClass="admin-main-area">
+
+            <children>
+                <VBox spacing="8"
+                      styleClass="admin-hero-card">
+
+                    <children>
+                        <Label text="Customer Test Requests"
+                               styleClass="admin-hero-title" />
+
+                        <Label text="Review customer requests, confirm payment status, and prepare paid requests for sample collection."
+                               wrapText="true"
+                               styleClass="admin-hero-subtitle" />
+                    </children>
+                </VBox>
+
+                <VBox spacing="15"
+                      styleClass="table-card">
+
+                    <children>
+                        <Label text="All Test Requests"
+                               styleClass="section-heading" />
+
+                        <TableView fx:id="requestTable"
+                                   prefWidth="850"
+                                   prefHeight="360">
+
+                            <columns>
+                                <TableColumn fx:id="requestIdColumn"
+                                             text="Request ID"
+                                             prefWidth="80" />
+
+                                <TableColumn fx:id="customerNameColumn"
+                                             text="Customer Name"
+                                             prefWidth="145" />
+
+                                <TableColumn fx:id="customerEmailColumn"
+                                             text="Customer Email"
+                                             prefWidth="180" />
+
+                                <TableColumn fx:id="testNameColumn"
+                                             text="Test Name"
+                                             prefWidth="160" />
+
+                                <TableColumn fx:id="paymentStatusColumn"
+                                             text="Payment"
+                                             prefWidth="100" />
+
+                                <TableColumn fx:id="requestStatusColumn"
+                                             text="Status"
+                                             prefWidth="130" />
+
+                                <TableColumn fx:id="requestedAtColumn"
+                                             text="Requested At"
+                                             prefWidth="150" />
+                            </columns>
+                        </TableView>
+
+                        <Label fx:id="messageLabel"
+                               text=""
+                               wrapText="true"
+                               styleClass="error-label" />
+
+                        <HBox spacing="15"
+                              alignment="CENTER_LEFT">
+
+                            <children>
+                                <Button text="Refresh"
+                                        onAction="#handleRefresh"
+                                        prefWidth="150"
+                                        styleClass="secondary-button" />
+
+                                <Button text="Mark Selected as Paid"
+                                        onAction="#handleMarkAsPaid"
+                                        prefWidth="220"
+                                        styleClass="primary-button" />
+
+                                <Button text="Proceed to Sample Tracking"
+                                        onAction="#openSampleTracking"
+                                        prefWidth="230"
+                                        styleClass="secondary-button" />
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </children>
+        </VBox>
+    </center>
+
+</BorderPane>
