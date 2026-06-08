@@ -66,10 +66,10 @@ public class EmailService {
 
         Transport.send(message);
     }
-    
+
     public static void sendTemporaryPassword(String recipientEmail,
-                                         String recipientName,
-                                         String temporaryPassword) throws Exception {
+                                             String recipientName,
+                                             String temporaryPassword) throws Exception {
 
         Properties properties = new Properties();
 
@@ -93,24 +93,73 @@ public class EmailService {
 
         message.setFrom(new InternetAddress(SENDER_EMAIL));
         message.setRecipients(
-            Message.RecipientType.TO,
-            InternetAddress.parse(recipientEmail)
+                Message.RecipientType.TO,
+                InternetAddress.parse(recipientEmail)
         );
 
         message.setSubject("Santé Diagnostics Temporary Password");
 
         String emailBody =
-            "Hello " + recipientName + ",\n\n"
-            + "A password reset was requested for your Santé Diagnostics account.\n\n"
-            + "Your temporary password is:\n\n"
-            + temporaryPassword + "\n\n"
-            + "Please log in using this temporary password. "
-            + "You will be required to change it immediately after login.\n\n"
-            + "If you did not request this reset, please contact Santé Diagnostics.\n\n"
-            + "Santé Diagnostics LIMS";
+                "Hello " + recipientName + ",\n\n"
+                + "A password reset was requested for your Santé Diagnostics account.\n\n"
+                + "Your temporary password is:\n\n"
+                + temporaryPassword + "\n\n"
+                + "Please log in using this temporary password. "
+                + "You will be required to change it immediately after login.\n\n"
+                + "If you did not request this reset, please contact Santé Diagnostics.\n\n"
+                + "Santé Diagnostics LIMS";
 
         message.setText(emailBody);
 
         Transport.send(message);
+    }
+
+    public static boolean sendResultReadyEmail(String recipientEmail,
+                                               String recipientName,
+                                               String testName) {
+
+        try {
+
+            Properties properties = new Properties();
+
+            properties.put("mail.smtp.auth", "true");
+            properties.put("mail.smtp.starttls.enable", "true");
+            properties.put("mail.smtp.host", SMTP_HOST);
+            properties.put("mail.smtp.port", SMTP_PORT);
+
+            Session session = Session.getInstance(properties, new Authenticator() {
+                @Override
+                protected PasswordAuthentication getPasswordAuthentication() {
+                    return new PasswordAuthentication(SENDER_EMAIL, SENDER_PASSWORD);
+                }
+            });
+
+            Message message = new MimeMessage(session);
+
+            message.setFrom(new InternetAddress(SENDER_EMAIL));
+            message.setRecipients(
+                    Message.RecipientType.TO,
+                    InternetAddress.parse(recipientEmail)
+            );
+
+            message.setSubject("Your Test Result Is Ready");
+
+            String emailBody =
+                    "Hello " + recipientName + ",\n\n"
+                    + "Your result for " + testName + " has been validated and released.\n\n"
+                    + "Please log in to the Santé Diagnostics portal to view your result.\n\n"
+                    + "Thank you.\n\n"
+                    + "Santé Diagnostics LIMS";
+
+            message.setText(emailBody);
+
+            Transport.send(message);
+
+            return true;
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }

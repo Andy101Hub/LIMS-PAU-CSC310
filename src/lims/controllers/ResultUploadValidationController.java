@@ -22,41 +22,22 @@ import lims.db.DBConnection;
 import lims.models.TestRequest;
 import lims.utils.SceneNavigator;
 import lims.utils.SessionManager;
+import lims.utils.EmailService;
 
 public class ResultUploadValidationController {
 
-    @FXML
-    private TableView<TestRequest> requestTable;
+    @FXML private TableView<TestRequest> requestTable;
+    @FXML private TableColumn<TestRequest, Integer> requestIdColumn;
+    @FXML private TableColumn<TestRequest, String> customerNameColumn;
+    @FXML private TableColumn<TestRequest, String> customerEmailColumn;
+    @FXML private TableColumn<TestRequest, String> testNameColumn;
+    @FXML private TableColumn<TestRequest, String> paymentStatusColumn;
+    @FXML private TableColumn<TestRequest, String> requestStatusColumn;
+    @FXML private TableColumn<TestRequest, String> requestedAtColumn;
 
-    @FXML
-    private TableColumn<TestRequest, Integer> requestIdColumn;
-
-    @FXML
-    private TableColumn<TestRequest, String> customerNameColumn;
-
-    @FXML
-    private TableColumn<TestRequest, String> customerEmailColumn;
-
-    @FXML
-    private TableColumn<TestRequest, String> testNameColumn;
-
-    @FXML
-    private TableColumn<TestRequest, String> paymentStatusColumn;
-
-    @FXML
-    private TableColumn<TestRequest, String> requestStatusColumn;
-
-    @FXML
-    private TableColumn<TestRequest, String> requestedAtColumn;
-
-    @FXML
-    private Label pdfPathLabel;
-
-    @FXML
-    private Label imagePathLabel;
-
-    @FXML
-    private Label messageLabel;
+    @FXML private Label pdfPathLabel;
+    @FXML private Label imagePathLabel;
+    @FXML private Label messageLabel;
 
     private File selectedPdfFile;
     private File selectedImageFile;
@@ -78,13 +59,13 @@ public class ResultUploadValidationController {
         ObservableList<TestRequest> requests = FXCollections.observableArrayList();
 
         String sql = "SELECT tr.request_id, u.full_name, u.email, tt.test_name, "
-                   + "tr.payment_status, tr.request_status, tr.requested_at "
-                   + "FROM test_requests tr "
-                   + "JOIN users u ON tr.customer_id = u.user_id "
-                   + "JOIN test_types tt ON tr.test_type_id = tt.test_type_id "
-                   + "WHERE tr.payment_status = 'PAID' "
-                   + "AND tr.request_status IN ('AWAITING_VALIDATION', 'PROCESSING', 'SAMPLE_COLLECTED', 'VALIDATED', 'COMPLETED') "
-                   + "ORDER BY tr.requested_at DESC";
+                + "tr.payment_status, tr.request_status, tr.requested_at "
+                + "FROM test_requests tr "
+                + "JOIN users u ON tr.customer_id = u.user_id "
+                + "JOIN test_types tt ON tr.test_type_id = tt.test_type_id "
+                + "WHERE tr.payment_status = 'PAID' "
+                + "AND tr.request_status IN ('PAID', 'AWAITING_VALIDATION', 'PROCESSING', 'SAMPLE_COLLECTED', 'VALIDATED', 'COMPLETED') "
+                + "ORDER BY tr.requested_at DESC";
 
         try {
             Connection conn = DBConnection.getConnection();
@@ -131,7 +112,6 @@ public class ResultUploadValidationController {
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose PDF Report");
-
         fileChooser.getExtensionFilters().add(
                 new FileChooser.ExtensionFilter("PDF Files", "*.pdf")
         );
@@ -150,7 +130,6 @@ public class ResultUploadValidationController {
 
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Choose Medical Image");
-
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.jpeg"),
                 new FileChooser.ExtensionFilter("All Files", "*.*")
@@ -188,9 +167,7 @@ public class ResultUploadValidationController {
 
             insertAuditLog(
                     "RESULT_FILES_UPLOADED",
-                    "Uploaded result files for request ID "
-                    + selectedRequest.getRequestId()
-                    + "."
+                    "Uploaded result files for request ID " + selectedRequest.getRequestId() + "."
             );
 
             messageLabel.setStyle("-fx-text-fill: green;");
@@ -212,12 +189,12 @@ public class ResultUploadValidationController {
 
     private void uploadResultFiles(int requestId, String pdfPath, String imagePath) throws SQLException {
         String sql = "UPDATE test_requests "
-                   + "SET pdf_report_path = COALESCE(?, pdf_report_path), "
-                   + "medical_image_path = COALESCE(?, medical_image_path), "
-                   + "result_status = 'UPLOADED', "
-                   + "request_status = 'AWAITING_VALIDATION', "
-                   + "updated_at = CURRENT_TIMESTAMP "
-                   + "WHERE request_id = ?";
+                + "SET pdf_report_path = COALESCE(?, pdf_report_path), "
+                + "medical_image_path = COALESCE(?, medical_image_path), "
+                + "result_status = 'UPLOADED', "
+                + "request_status = 'AWAITING_VALIDATION', "
+                + "updated_at = CURRENT_TIMESTAMP "
+                + "WHERE request_id = ?";
 
         Connection conn = DBConnection.getConnection();
         PreparedStatement stmt = conn.prepareStatement(sql);
@@ -254,12 +231,23 @@ public class ResultUploadValidationController {
             insertAuditLog(
                     "RESULT_VALIDATED",
                     "Validated and released result for request ID "
-                    + selectedRequest.getRequestId()
-                    + "."
+                            + selectedRequest.getRequestId()
+                            + "."
+            );
+
+            boolean emailSent = EmailService.sendResultReadyEmail(
+                    selectedRequest.getCustomerEmail(),
+                    selectedRequest.getCustomerName(),
+                    selectedRequest.getTestName()
             );
 
             messageLabel.setStyle("-fx-text-fill: green;");
-            messageLabel.setText("Result validated and released to customer successfully.");
+
+            if (emailSent) {
+                messageLabel.setText("Result validated and released. Customer email notification sent.");
+            } else {
+                messageLabel.setText("Result validated and released, but email notification could not be sent.");
+            }
 
             loadRequests();
 
@@ -272,8 +260,8 @@ public class ResultUploadValidationController {
 
     private boolean requestHasUploadedResult(int requestId) throws SQLException {
         String sql = "SELECT pdf_report_path, medical_image_path "
-                   + "FROM test_requests "
-                   + "WHERE request_id = ?";
+                + "FROM test_requests "
+                + "WHERE request_id = ?";
 
         Connection conn = DBConnection.getConnection();
         PreparedStatement stmt = conn.prepareStatement(sql);
@@ -301,12 +289,12 @@ public class ResultUploadValidationController {
 
     private void validateResult(int requestId) throws SQLException {
         String sql = "UPDATE test_requests "
-                   + "SET result_status = 'VALIDATED', "
-                   + "request_status = 'VALIDATED', "
-                   + "validated_by = ?, "
-                   + "validated_at = CURRENT_TIMESTAMP, "
-                   + "updated_at = CURRENT_TIMESTAMP "
-                   + "WHERE request_id = ?";
+                + "SET result_status = 'VALIDATED', "
+                + "request_status = 'VALIDATED', "
+                + "validated_by = ?, "
+                + "validated_at = CURRENT_TIMESTAMP, "
+                + "updated_at = CURRENT_TIMESTAMP "
+                + "WHERE request_id = ?";
 
         Connection conn = DBConnection.getConnection();
         PreparedStatement stmt = conn.prepareStatement(sql);
@@ -328,7 +316,7 @@ public class ResultUploadValidationController {
 
     private void insertAuditLog(String action, String details) throws SQLException {
         String sql = "INSERT INTO audit_logs (user_id, action, details) "
-                   + "VALUES (?, ?, ?)";
+                + "VALUES (?, ?, ?)";
 
         Connection conn = DBConnection.getConnection();
         PreparedStatement stmt = conn.prepareStatement(sql);
@@ -399,15 +387,15 @@ public class ResultUploadValidationController {
                 "LIMS Login"
         );
     }
-    
+
     @FXML
     private void openCustomerProfiles(ActionEvent event) {
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
         SceneNavigator.switchScene(
-            stage,
-            "/lims/views/lab_customer_profiles.fxml",
-            "Customer Profiles"
+                stage,
+                "/lims/views/lab_customer_profiles.fxml",
+                "Customer Profiles"
         );
     }
 }
