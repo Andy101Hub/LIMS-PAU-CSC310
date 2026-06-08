@@ -9,8 +9,8 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane prefWidth="1150.0"
-            prefHeight="650.0"
+<BorderPane prefWidth="1100.0"
+            prefHeight="620.0"
             xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="lims.controllers.ResultUploadValidationController"
@@ -88,129 +88,136 @@
     </top>
 
     <center>
-        <VBox spacing="12"
-              styleClass="admin-main-area">
+    <VBox spacing="12"
+          styleClass="admin-main-area">
 
-            <children>
-                <VBox spacing="8"
-                      styleClass="admin-hero-card">
+        <children>
+            <VBox spacing="6"
+                  styleClass="admin-hero-card">
 
-                    <children>
-                        <Label text="Upload and Validate Patient Results"
-                               styleClass="admin-hero-title" />
+                <children>
+                    <Label text="Upload and Validate Patient Results"
+                           styleClass="admin-hero-title" />
 
-                        <Label text="Attach PDF reports and medical images to customer test requests. Results only become visible to customers after validation."
-                               wrapText="true"
-                               styleClass="admin-hero-subtitle" />
-                    </children>
-                </VBox>
+                    <Label text="Attach PDF reports and medical images to customer test requests. Results only become visible to customers after validation."
+                           wrapText="true"
+                           styleClass="admin-hero-subtitle" />
+                </children>
+            </VBox>
 
-                <VBox spacing="10"
-                      styleClass="table-card">
+            <VBox spacing="10"
+                  styleClass="table-card">
 
-                    <children>
-                        <Label text="Requests Awaiting Result Upload or Validation"
-                               styleClass="section-heading" />
+                <children>
+                    <Label text="Requests Awaiting Result Upload or Validation"
+                           styleClass="section-heading" />
 
-                        <TableView fx:id="requestTable"
-                                   prefWidth="850"
-                                   prefHeight="260"
-                                   minHeight="260">
+                    <TableView fx:id="requestTable"
+                               prefWidth="850"
+                               prefHeight="220"
+                               minHeight="220">
 
-                            <columns>
-                                <TableColumn fx:id="requestIdColumn"
-                                             text="Request ID"
-                                             prefWidth="80" />
+                        <columns>
+                            <TableColumn fx:id="requestIdColumn"
+                                         text="Request ID"
+                                         prefWidth="95" />
 
-                                <TableColumn fx:id="customerNameColumn"
-                                             text="Customer Name"
-                                             prefWidth="145" />
+                            <TableColumn fx:id="customerNameColumn"
+                                         text="Customer Name"
+                                         prefWidth="160" />
 
-                                <TableColumn fx:id="customerEmailColumn"
-                                             text="Customer Email"
-                                             prefWidth="180" />
+                            <TableColumn fx:id="customerEmailColumn"
+                                         text="Customer Email"
+                                         prefWidth="200" />
 
-                                <TableColumn fx:id="testNameColumn"
-                                             text="Test Name"
-                                             prefWidth="160" />
+                            <TableColumn fx:id="testNameColumn"
+                                         text="Test Name"
+                                         prefWidth="170" />
 
-                                <TableColumn fx:id="paymentStatusColumn"
-                                             text="Payment"
-                                             prefWidth="100" />
+                            <TableColumn fx:id="paymentStatusColumn"
+                                         text="Payment"
+                                         prefWidth="110" />
 
-                                <TableColumn fx:id="requestStatusColumn"
-                                             text="Request Status"
-                                             prefWidth="150" />
+                            <TableColumn fx:id="requestStatusColumn"
+                                         text="Request Status"
+                                         prefWidth="160" />
+                            
+                            <TableColumn fx:id="requestedAtColumn"
+                                         text="Requested At"
+                                         prefWidth="150" />
+                        </columns>
+                    </TableView>
 
-                                <TableColumn fx:id="requestedAtColumn"
-                                             text="Requested At"
-                                             prefWidth="150" />
-                            </columns>
-                        </TableView>
+                    <HBox spacing="30"
+                          alignment="CENTER_LEFT">
 
-                        <VBox spacing="8">
-                            <children>
-                                <Label text="Selected PDF Report:"
-                                       styleClass="input-label" />
+                        <children>
+                            <VBox spacing="6">
+                                <children>
+                                    <Label text="Selected PDF Report:"
+                                           styleClass="input-label" />
 
-                                <Label fx:id="pdfPathLabel"
-                                       text="No PDF selected"
-                                       wrapText="true"
-                                       styleClass="admin-section-text" />
+                                    <Label fx:id="pdfPathLabel"
+                                           text="No PDF selected"
+                                           wrapText="true"
+                                           maxWidth="320"
+                                           styleClass="admin-section-text" />
 
-                                <Button text="Choose PDF Report"
-                                        onAction="#handleChoosePdf"
-                                        prefWidth="180"
-                                        styleClass="secondary-button" />
-                            </children>
-                        </VBox>
+                                    <Button text="Choose PDF Report"
+                                            onAction="#handleChoosePdf"
+                                            prefWidth="180"
+                                            styleClass="secondary-button" />
+                                </children>
+                            </VBox>
 
-                        <VBox spacing="8">
-                            <children>
-                                <Label text="Selected Medical Image:"
-                                       styleClass="input-label" />
+                            <VBox spacing="6">
+                                <children>
+                                    <Label text="Selected Medical Image:"
+                                           styleClass="input-label" />
 
-                                <Label fx:id="imagePathLabel"
-                                       text="No image selected"
-                                       wrapText="true"
-                                       styleClass="admin-section-text" />
+                                    <Label fx:id="imagePathLabel"
+                                           text="No image selected"
+                                           wrapText="true"
+                                           maxWidth="320"
+                                           styleClass="admin-section-text" />
 
-                                <Button text="Choose Medical Image"
-                                        onAction="#handleChooseImage"
-                                        prefWidth="190"
-                                        styleClass="secondary-button" />
-                            </children>
-                        </VBox>
+                                    <Button text="Choose Medical Image"
+                                            onAction="#handleChooseImage"
+                                            prefWidth="190"
+                                            styleClass="secondary-button" />
+                                </children>
+                            </VBox>
+                        </children>
+                    </HBox>
 
-                        <HBox spacing="15"
-                              alignment="CENTER_LEFT">
+                    <HBox spacing="15"
+                          alignment="CENTER_LEFT">
 
-                            <children>
-                                <Button text="Upload Result Files"
-                                        onAction="#handleUploadFiles"
-                                        prefWidth="190"
-                                        styleClass="primary-button" />
+                        <children>
+                            <Button text="Upload Result Files"
+                                    onAction="#handleUploadFiles"
+                                    prefWidth="190"
+                                    styleClass="primary-button" />
 
-                                <Button text="Validate and Release Result"
-                                        onAction="#handleValidateResult"
-                                        prefWidth="240"
-                                        styleClass="primary-button" />
+                            <Button text="Validate and Release Result"
+                                    onAction="#handleValidateResult"
+                                    prefWidth="240"
+                                    styleClass="primary-button" />
 
-                                <Button text="Refresh"
-                                        onAction="#handleRefresh"
-                                        prefWidth="130"
-                                        styleClass="secondary-button" />
-                            </children>
-                        </HBox>
+                            <Button text="Refresh"
+                                    onAction="#handleRefresh"
+                                    prefWidth="130"
+                                    styleClass="secondary-button" />
+                        </children>
+                    </HBox>
 
-                        <Label fx:id="messageLabel"
-                               text=""
-                               wrapText="true"
-                               styleClass="error-label" />
-                    </children>
-                </VBox>
-            </children>
-        </VBox>
-    </center>
-
+                    <Label fx:id="messageLabel"
+                           text=""
+                           wrapText="true"
+                           styleClass="error-label" />
+                </children>
+            </VBox>
+        </children>
+    </VBox>
+</center>
 </BorderPane>
